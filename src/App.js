@@ -1,14 +1,19 @@
 import React from 'react';
-import Header from './components/Header';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SignUpForm from './components/SignUpForm';
-import './styles.css';
+import LoginForm from './components/LoginForm';
+import WelcomeScreen from './components/WelcomeScreen';
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <SignUpForm />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/signup" element={<SignUpForm />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/welcome" element={<WelcomeScreen />} />
+        <Route path="/" element={<SignUpForm />} />
+      </Routes>
+    </Router>
   );
 }
 
