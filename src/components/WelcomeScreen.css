@@ -1,65 +1,60 @@
-body, html {
-    height: 100%;
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
 .welcome-screen {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    background-color: #fafafa;
-    background-image: url('https://i.pinimg.com/originals/50/ea/6f/50ea6f333adf5baf1b1984d3d90420a5.gif');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    height: 100vh;
+    background-color: #fff; /* Pure white background for a clean look */
+    color: #1a1a1a; /* Almost black for contrast */
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    padding: 40px;
 }
 
-.welcome-screen .content {
-    width: 500px; 
-    padding: 40px;
-    background: rgba(255, 255, 255, 0.9); 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+.welcome-container {
+    max-width: 600px;
     text-align: center;
 }
 
 .welcome-screen h1 {
-    font-size: 2.5rem;
-    color: #5D3FD3;
-    margin-bottom: 0.5rem;
+    font-size: 3em;
+    font-weight: 300;
+    margin-bottom: 0.2em;
 }
 
 .welcome-screen p {
-    font-size: 1.25rem;
-    color: #6c757d;
-    margin-bottom: 2rem;
+    font-size: 1.2em;
+    margin-bottom: 2em;
+    color: #5a5a5a; /* A softer shade of black for the text */
 }
 
-.welcome-screen button {
-    font-size: 1rem;
-    padding: 10px 20px;
+.get-started-btn {
+    background-color: #0052cc; /* Professional blue */
     border: none;
-    border-radius: 25px; 
-    background-color: #5D3FD3; 
+    border-radius: 25px; /* Fully rounded edges for buttons */
+    padding: 15px 30px;
+    font-size: 1em;
+    font-weight: bold;
     color: white;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* subtle shadow for depth */
 }
 
-.welcome-screen button:hover {
-    background-color: #4e31b6; 
+.get-started-btn:hover {
+    background-color: #0041a8; /* A slightly darker blue for hover effect */
 }
 
-@media (max-width: 600px) {
-    .welcome-screen .content {
-        width: 90%;
-        padding: 20px;
-    }
+.profile-reminder {
+    margin-top: 3em;
+    font-size: 0.9em;
+    font-weight: normal;
+    color: #5a5a5a;
+}
 
-    .welcome-screen h1 {
-        font-size: 2rem;
-    }
+.profile-reminder a {
+    color: #0052cc;
+    text-decoration: none;
+}
+
+.profile-reminder a:hover {
+    text-decoration: underline;
 }
