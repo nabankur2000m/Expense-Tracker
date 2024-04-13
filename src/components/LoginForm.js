@@ -22,6 +22,7 @@ function LoginForm() {
 
            
             localStorage.setItem('token', response.data.idToken); 
+            localStorage.setItem('email', email);
             console.log(response.data);
             navigate('/welcome');
             

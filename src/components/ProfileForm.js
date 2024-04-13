@@ -1,17 +1,24 @@
-import React, { useState } from 'react';
-import axios from 'axios'; // Make sure axios is imported
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './ProfileForm.css';
 
 function ProfileForm({ onProfileUpdate, onCancel }) {
-    const [fullName, setFullName] = useState('');
-    const [profilePhotoURL, setProfilePhotoURL] = useState('');
+    const [fullName, setFullName] = useState(localStorage.getItem('fullName') || '');
+    const [profilePhotoURL, setProfilePhotoURL] = useState(localStorage.getItem('profilePhotoURL') || '');
     const [error, setError] = useState('');
 
-    const API_KEY = 'AIzaSyDo8G727k7YUfG19hcgPOG5qJXJuU8cLLM'; 
+    const API_KEY = 'AIzaSyDo8G727k7YUfG19hcgPOG5qJXJuU8cLLM';
+
+    useEffect(() => {
+        const storedFullName = localStorage.getItem('fullName');
+        const storedProfilePhotoURL = localStorage.getItem('profilePhotoURL');
+        if (storedFullName) setFullName(storedFullName);
+        if (storedProfilePhotoURL) setProfilePhotoURL(storedProfilePhotoURL);
+    }, []);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const idToken = localStorage.getItem('token'); 
+        const idToken = localStorage.getItem('token');
 
         if (!idToken) {
             setError('User is not logged in.');
@@ -26,11 +33,14 @@ function ProfileForm({ onProfileUpdate, onCancel }) {
                 returnSecureToken: true
             });
 
-           
+            localStorage.setItem('fullName', fullName);
+            localStorage.setItem('profilePhotoURL', profilePhotoURL);
             onProfileUpdate(response.data);
+            onProfileUpdate({ fullName, profilePhotoURL });
+
             setError('');
         } catch (error) {
-            setError('Failed to update profile: ' + error.message);
+            setError('Failed to update profile: ' + (error.response?.data?.error?.message || error.message));
         }
     };
 
