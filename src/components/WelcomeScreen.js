@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; 
 import './WelcomeScreen.css';
 import ProfileForm from './ProfileForm';
 import axios from 'axios';
@@ -8,12 +9,13 @@ function WelcomeScreen() {
     const [fullName, setFullName] = useState('');
     const [profilePhotoURL, setProfilePhotoURL] = useState('');
     const [emailVerified, setEmailVerified] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleStorageChange = () => {
             setFullName(localStorage.getItem('fullName') || 'Your Full Name');
             setProfilePhotoURL(localStorage.getItem('profilePhotoURL'));
-            setEmailVerified(JSON.parse(localStorage.getItem('emailVerified') || 'false')); 
+            setEmailVerified(JSON.parse(localStorage.getItem('emailVerified') || 'false'));
         };
 
         window.addEventListener('storage', handleStorageChange);
@@ -46,9 +48,15 @@ function WelcomeScreen() {
         }
     };
 
+    const handleLogout = () => {
+        localStorage.clear(); 
+        navigate('/login');
+    };
+
     return (
         <div className="welcome-screen">
             <div className="welcome-container">
+                <button onClick={handleLogout} style={{ float: 'right' }}>Logout</button>
                 <h1>Welcome to Expense Tracker</h1>
                 <h2>Welcome, {fullName}</h2>
                 {profilePhotoURL && <img src={profilePhotoURL} alt="Profile" />}
