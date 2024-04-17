@@ -2,59 +2,79 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #fff; 
-    color: #1a1a1a;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    padding: 40px;
-}
-
-.welcome-container {
+    min-height: 100vh;
+    background-color: #f4f4f9;
+  }
+  
+  .welcome-container {
+    width: 90%;
     max-width: 600px;
+    background: #fff; 
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     text-align: center;
-}
-
-.welcome-screen h1 {
-    font-size: 3em;
-    font-weight: 300;
-    margin-bottom: 0.2em;
-}
-
-.welcome-screen p {
-    font-size: 1.2em;
-    margin-bottom: 2em;
-    color: #5a5a5a; 
-}
-
-.get-started-btn {
-    background-color: #0052cc; 
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logout-btn {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
     border: none;
-    border-radius: 25px;
-    padding: 15px 30px;
-    font-size: 1em;
-    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .logout-btn:hover {
+    background-color: #c82333; 
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
     color: white;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
-}
-
-.get-started-btn:hover {
-    background-color: #0041a8;
-}
-
-.profile-reminder {
-    margin-top: 3em;
-    font-size: 0.9em;
-    font-weight: normal;
-    color: #5a5a5a;
-}
-
-.profile-reminder a {
-    color: #0052cc;
-    text-decoration: none;
-}
-
-.profile-reminder a:hover {
-    text-decoration: underline;
-}
+    margin: 10px;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .verify-btn {
+    background-color: #17a2b8; 
+  }
+  
+  .verify-btn:hover {
+    background-color: #138496; 
+  }
+  
+  .add-expense-btn {
+    background-color: #28a745;
+  }
+  
+  .add-expense-btn:hover {
+    background-color: #218838; 
+  }
+  
+  .complete-profile-btn {
+    background-color: #ffc107;
+  }
+  
+  .complete-profile-btn:hover {
+    background-color: #e0a800; 
+  }
+  
+  .btn:hover {
+    transform: translateY(-3px); 
+  }
+  
+  .btn:active {
+    transform: translateY(-1px);
+  }
+  

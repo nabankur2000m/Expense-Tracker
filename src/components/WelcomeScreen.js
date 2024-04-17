@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; 
-import './WelcomeScreen.css';
+import './WelcomeScreen.css';  // Make sure the CSS is properly linked
 import ProfileForm from './ProfileForm';
 import axios from 'axios';
 
@@ -28,8 +28,8 @@ function WelcomeScreen() {
 
     const handleProfileUpdate = (profileData) => {
         setShowProfileForm(false);
-        setFullName(localStorage.getItem('fullName') || 'Your Full Name');
-        setProfilePhotoURL(localStorage.getItem('profilePhotoURL'));
+        setFullName(profileData.fullName || localStorage.getItem('fullName') || 'Your Full Name');
+        setProfilePhotoURL(profileData.profilePhotoURL || localStorage.getItem('profilePhotoURL'));
         setEmailVerified(profileData.emailVerified);
     };
 
@@ -53,18 +53,27 @@ function WelcomeScreen() {
         navigate('/login');
     };
 
+    const handleAddExpenseClick = () => {
+        navigate('/add-expense');
+    };
+
     return (
         <div className="welcome-screen">
             <div className="welcome-container">
-                <button onClick={handleLogout} style={{ float: 'right' }}>Logout</button>
-                <h1>Welcome to Expense Tracker</h1>
+                <div className="header">
+                    <h1>Welcome to Expense Tracker</h1>
+                    <button onClick={handleLogout} className="logout-btn">Logout</button>
+                </div>
                 <h2>Welcome, {fullName}</h2>
                 {profilePhotoURL && <img src={profilePhotoURL} alt="Profile" />}
                 <p>Your personal finance dashboard</p>
-                {!emailVerified && <button onClick={handleVerifyEmail}>Verify Email</button>}
-                <button className="complete-profile-btn" onClick={() => setShowProfileForm(true)}>
-                    Complete now
-                </button>
+                <div className="actions">
+                    {!emailVerified && <button onClick={handleVerifyEmail} className="btn verify-btn">Verify Email</button>}
+                    <button onClick={handleAddExpenseClick} className="btn add-expense-btn">Add Daily Expense</button>
+                    <button className="btn complete-profile-btn" onClick={() => setShowProfileForm(true)}>
+                        Complete Profile
+                    </button>
+                </div>
                 {showProfileForm && <ProfileForm onProfileUpdate={handleProfileUpdate} onCancel={() => setShowProfileForm(false)} />}
             </div>
         </div>
