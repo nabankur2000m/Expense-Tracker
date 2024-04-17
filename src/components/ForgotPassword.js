@@ -1,61 +1,49 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './ForgotPassword.css';
 
-const loaderStyle = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100vh'
-};
+const API_KEY = 'AIzaSyDo8G727k7YUfG19hcgPOG5qJXJuU8cLLM';
 
 function ForgotPassword() {
     const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
 
-    const handleRequestResetLink = async () => {
-        if (!email) {
-            setMessage('Please enter your email address.');
-            return;
-        }
-
+    const handleSubmit = async (event) => {
+        event.preventDefault();
         setLoading(true);
         setMessage('');
 
         try {
-            const response = await axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyDo8G727k7YUfG19hcgPOG5qJXJuU8cLLM`, {
+            await axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=${API_KEY}`, {
                 requestType: 'PASSWORD_RESET',
-                email: email
+                email: email,
             });
-            // Response handling
-            console.log(response.data);
-            setMessage('Please check your email for the reset link.');
+            setLoading(false)
+            setMessage('A password reset link has been sent to your email.');
         } catch (error) {
-            console.error('Error sending reset email:', error);
-            setMessage('Failed to send reset email. Please try again later.');
-        } finally {
             setLoading(false);
+            setMessage('An error occurred. Please try again later.');
         }
     };
 
-    if (loading) {
-        return <div style={loaderStyle}>Loading...</div>;
-    }
-
     return (
         <div className="forgot-password-container">
-            <h1>Forgot Password</h1>
-            <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                disabled={loading}
-            />
-            <button onClick={handleRequestResetLink} disabled={loading}>
-                Send Reset Link
-            </button>
-            {message && <p>{message}</p>}
+            <h2>Forgot Password</h2>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="email"
+                    placeholder="Enter the email with which you have registered."
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+                <button type="submit" disabled={loading}>
+                    {loading ? 'Loading...' : 'Send Link'}
+                </button>
+                {loading && <p>Loading...</p>}
+                {message && <p>{message}</p>}
+            </form>
         </div>
     );
 }

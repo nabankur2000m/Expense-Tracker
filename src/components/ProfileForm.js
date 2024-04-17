@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './ProfileForm.css';
 
+
 function ProfileForm({ onProfileUpdate, onCancel }) {
     const [fullName, setFullName] = useState(localStorage.getItem('fullName') || '');
     const [profilePhotoURL, setProfilePhotoURL] = useState(localStorage.getItem('profilePhotoURL') || '');
