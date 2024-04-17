@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './ExpenseForm.css'; // Ensure this is properly linked
+import './ExpenseForm.css'; 
 
 function ExpenseForm({ onAddExpense }) {
   const [enteredAmount, setEnteredAmount] = useState('');
@@ -8,7 +8,7 @@ function ExpenseForm({ onAddExpense }) {
   const [formError, setFormError] = useState('');
 
   const validateInput = () => {
-    if (enteredAmount <= 0) {
+    if (parseFloat(enteredAmount) <= 0) {
       setFormError('Amount must be greater than zero');
       return false;
     }
@@ -23,15 +23,36 @@ function ExpenseForm({ onAddExpense }) {
   const submitHandler = (event) => {
     event.preventDefault();
     if (!validateInput()) return;
+
     const expenseData = {
       amount: parseFloat(enteredAmount),
       description: enteredDescription,
-      category: enteredCategory
+      category: enteredCategory,
+      date: new Date().toISOString() 
     };
-    onAddExpense(expenseData);
-    setEnteredAmount('');
-    setEnteredDescription('');
-    setEnteredCategory('');
+
+    const url = 'https://react-project-nabankur-default-rtdb.asia-southeast1.firebasedatabase.app/expenses.json';
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(expenseData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+        onAddExpense({...expenseData, id: data.name}); 
+        alert('Expense added successfully!');
+        setEnteredAmount('');
+        setEnteredDescription('');
+        setEnteredCategory('');
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        alert('Success'); //Error
+    });
   };
 
   return (

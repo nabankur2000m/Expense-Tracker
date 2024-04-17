@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; 
-import './WelcomeScreen.css';  // Make sure the CSS is properly linked
+import './WelcomeScreen.css'; 
 import ProfileForm from './ProfileForm';
 import axios from 'axios';
 

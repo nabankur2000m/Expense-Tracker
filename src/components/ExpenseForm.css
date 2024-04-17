@@ -2,13 +2,13 @@
     max-width: 500px;
     margin: 40px auto;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.85); /* Semi-transparent white background */
+    background: rgba(255, 255, 255, 0.85); 
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-image: url('https://cdn.dribbble.com/users/2156796/screenshots/19992280/media/7d2ee3a4d15d1f335419059066067694.gif'); /* Update with your image path */
+    background-image: url('https://cdn.dribbble.com/users/2156796/screenshots/19992280/media/7d2ee3a4d15d1f335419059066067694.gif');
     background-size: cover;
     background-position: center;
-    overflow: hidden; /* Ensures no overflow from content */
+    overflow: hidden; 
   }
   
   .expense-form h2 {
