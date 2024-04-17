@@ -27,6 +27,34 @@ tr:hover {
     background-color: #f1f1f1;
     cursor: pointer;
 }
+button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.edit-btn {
+    background-color: #4CAF50; 
+    color: white;
+}
+
+.edit-btn:hover {
+    background-color: #45a049; 
+}
+
+.delete-btn {
+    background-color: #f44336; 
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: #d32f2f;
+}
+
+
 
 @media (max-width: 768px) {
     th, td {
@@ -41,4 +69,17 @@ tr:hover {
     .hide-on-mobile {
         display: none;
     }
+}
+button {
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+button:hover {
+    background-color: darkred;
 }
