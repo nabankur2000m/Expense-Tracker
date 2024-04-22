@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './ExpensesList.css';
+import { useSelector } from 'react-redux';
 
 function ExpensesList() {
     const [expenses, setExpenses] = useState([]);
@@ -85,6 +86,15 @@ function ExpensesList() {
         });
     };
 
+
+
+
+
+
+
+
+
+    
     return (
         <table>
             <thead>
